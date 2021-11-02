@@ -17,5 +17,46 @@ const connection = mysql.createConnection(
 
   class Workplace {
 
+    constructor(connection){
+        this.connection = connection;
+    }
+
+    viewAllDepartments(){
+        return this.connection.promise().query(
+            "SELECT department.id, department.name FROM department"
+        )
+    }
     
+    viewAllEmployees(){
+        return this.connection.promise().query(
+            
+        )
+    }
+
+    addDepartment(){
+        return this.connection.promise().query(
+            
+        )
+    }
+    
+    addRole(){
+        return this.connection.promise().query(
+            
+        )
+    }
+
+    addEmployee(){
+        return this.connection.promise().query(
+            
+        )
+    }
+
+    updateEmployeeRole(){
+        return this.connection.promise().query(
+            
+        )
+    }
+
+
   }
+
