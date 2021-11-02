@@ -12,7 +12,6 @@ const connection = mysql.createConnection(
   );
 
   
-  module.exports = connection;
 
 
   class Workplace {
@@ -23,40 +22,48 @@ const connection = mysql.createConnection(
 
     viewAllDepartments(){
         return this.connection.promise().query(
-            "SELECT department.id, department.name FROM department"
+            "SELECT * FROM department"
         )
     }
     
     viewAllEmployees(){
         return this.connection.promise().query(
-            
+            "SELECT * FROM employee "
         )
     }
 
-    addDepartment(){
+    viewAllRoles(){
         return this.connection.promise().query(
+            "SELECT * FROM roles "
+        )
+    }
+
+    addDepartment(department){
+        return this.connection.promise().query(
+            "INSERT INTO department SET department_name = ?", department 
             
         )
     }
     
-    addRole(){
+    addRole(newRole){
         return this.connection.promise().query(
-            
+            "INSERT INTO roles SET title = ? salary = ? department_id = ?", newRole
         )
     }
 
-    addEmployee(){
+    addEmployee(newEmployee){
         return this.connection.promise().query(
-            
+            "INSERT INTO employee SET first_name = ? last_name = ?, role_id = ?, manager_id = ?", newEmployee //array with first, last, role, manager
         )
     }
 
-    updateEmployeeRole(){
+    updateEmployeeRole(updatedEmployee){
         return this.connection.promise().query(
-            
+        "INSERT INTO employee SET role_id = ?", updatedEmployee
         )
     }
 
 
   }
 
+  module.exports = new Workplace(connection);
