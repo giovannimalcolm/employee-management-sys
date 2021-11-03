@@ -11,8 +11,6 @@ const connection = mysql.createConnection(
     console.log(`Connected to the company_db database.`)
   );
 
-  
-
 
   class Workplace {
 
@@ -20,19 +18,19 @@ const connection = mysql.createConnection(
         this.connection = connection;
     }
 
-    viewAllDepartments(){
+    viewDepartments(){
         return this.connection.promise().query(
             "SELECT * FROM department"
         )
     }
     
-    viewAllEmployees(){
+    viewEmployees(){
         return this.connection.promise().query(
             "SELECT * FROM employee "
         )
     }
 
-    viewAllRoles(){
+    viewRoles(){
         return this.connection.promise().query(
             "SELECT * FROM roles "
         )
