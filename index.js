@@ -117,3 +117,45 @@ function viewRoles(){
     .then(() => promptUser());
 }
 
+
+function addDepartment(){
+    db.addDepartment()
+    .then(([data]) => {
+        let department = data;
+        console.log("\n")
+        console.table(department)
+    })
+    .then(() => promptUser());
+}
+
+
+function addRole(){
+    db.addRole()
+    .then(([data]) => {
+        let newRole = data;
+        console.log("\n")
+        console.table(newRole)
+    })
+    .then(() => promptUser());
+}
+
+
+function addEmployee(){
+    db.addEmployee()
+    .then(([data]) => {
+        let newEmployee = data;
+        console.log("\n")
+        console.table(newEmployee)
+    })
+    .then(() => promptUser());
+}
+
+function updateEmployeeRole(){
+    db.updateEmployeeRole()
+    .then(([data]) => {
+        let newEmployeeRole = data;
+        console.log("\n")
+        console.table(newEmployeeRole)
+    })
+    .then(() => promptUser());
+}
