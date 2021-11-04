@@ -1,7 +1,5 @@
 const inquirer = require("inquirer");
-const prompt = require("inquirer");
 const { exit } = require("process");
-const { viewEmployees, viewRoles, addDepartment, addRole, addEmployee, updateEmployeeRole } = require("./db");
 const db = require("./db");
 require("console.table");
 
@@ -119,25 +117,54 @@ function viewRoles(){
 
 
 function addDepartment(){
-    db.addDepartment()
-    .then(([data]) => {
-        let department = data;
-        console.log("\n")
-        console.table(department)
-    })
-    .then(() => promptUser());
-}
+    inquirer.prompt([
+        {
+          name: "name",
+          message: "What's the name of the department?"
+        }
+      ])
+        .then(res => {
+          let name = res;
+          db.addDepartment(name)
+            .then(() => console.log(`Added ${name.name} to the database`))
+            .then(() => promptUser())
+        })
+    }
+    
 
 
-function addRole(){
-    db.addRole()
-    .then(([data]) => {
-        let newRole = data;
-        console.log("\n")
-        console.table(newRole)
-    })
-    .then(() => promptUser());
-}
+    function addRole(){
+        db.viewDepartments()
+        .then(([data]) => {
+          let departments = data;
+          const departmentChoices = departments.map(({ id, name }) => ({
+            name: name,
+            value: id
+          }));
+          prompt([
+            {
+              name: "title",
+              message: "What is the name of the role?"
+            },
+            {
+              name: "salary",
+              message: "What is the salary of the role?"
+            },
+            {
+              type: "list",
+              name: "department_id",
+              message: "Which department does the role belong to?",
+              choices: departmentChoices
+            }
+          ])
+            .then(role => {
+              db.createRole(role)
+                .then(() => console.log(`Added ${role.title} to the database`))
+                .then(() => loadMainPrompts())
+            })
+        })
+    }
+        
 
 
 function addEmployee(){

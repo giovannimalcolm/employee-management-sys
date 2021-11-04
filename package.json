@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/giovannimalcolm/employee-tracker/issues"
   },
-  "homepage": "https://github.com/giovannimalcolm/employee-tracker#readme"
+  "homepage": "https://github.com/giovannimalcolm/employee-tracker#readme",
+  "keywords": [],
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.2",
+    "process": "^0.11.10"
+  }
 }
