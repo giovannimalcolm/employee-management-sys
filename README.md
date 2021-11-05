@@ -6,7 +6,7 @@
 
 Command-line application to maintain a database of employee information including names, roles, ID numbers, manager relationships, and departments.
 
-[!Screenshot]()
+![Screenshot](https://github.com/giovannimalcolm/employee-management-sys/blob/main/images/demo.png?raw=true)
 ## Table of Contents
 
 * [Installation](#installation)
