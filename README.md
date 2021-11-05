@@ -1,4 +1,4 @@
-# Employee Tracker
+# Employee Management System
   ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
        https://opensource.org/licenses/MIT
 
@@ -6,6 +6,7 @@
 
 Command-line application to maintain a database of employee information including names, roles, ID numbers, manager relationships, and departments.
 
+[!Screenshot]()
 ## Table of Contents
 
 * [Installation](#installation)
