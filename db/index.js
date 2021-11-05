@@ -26,39 +26,41 @@ const connection = mysql.createConnection(
     
     viewEmployees(){
         return this.connection.promise().query(
-            "SELECT * FROM employee "
+            "SELECT employee.id, employee.first_name, employee.last_name, roles.title, department.name AS department, roles.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN roles on employee.role_id = roles.id LEFT JOIN department on roles.department_id = department.id LEFT JOIN employee manager on manager.id = employee.manager_id;"
+
         )
     }
 
     viewRoles(){
         return this.connection.promise().query(
-            "SELECT * FROM roles "
+            "SELECT roles.id, roles.title, department.name AS department, roles.salary FROM roles LEFT JOIN department on roles.department_id = department.id;"
         )
     }
 
     addDepartment(department){
         return this.connection.promise().query(
-            "INSERT INTO department SET department_name = ?", department 
+            "INSERT INTO department SET ?", department 
             
         )
     }
     
     addRole(newRole){
         return this.connection.promise().query(
-            "INSERT INTO roles SET title = ? salary = ? department_id = ?", newRole
+            "INSERT INTO roles SET ?", newRole
         )
     }
 
     addEmployee(newEmployee){
         return this.connection.promise().query(
-            "INSERT INTO employee SET first_name = ? last_name = ?, role_id = ?, manager_id = ?", newEmployee //array with first, last, role, manager
+            "INSERT INTO employee SET ?", newEmployee 
         )
     }
 
-    updateEmployeeRole(updatedEmployee){
+    updateEmployeeRole(roleID, employeeID){
         return this.connection.promise().query(
-        "INSERT INTO employee SET role_id = ?", updatedEmployee
-        )
+            "UPDATE employee SET role_id = ? WHERE id = ?",
+            [roleID, employeeID]
+            )
     }
 
 
